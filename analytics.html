@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics - Dern Support</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-brand">
+                    <a href="dashboard.html" class="nav-link">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Dashboard
+                    </a>
+                    <i class="fas fa-chart-bar" style="color: #f59e0b; margin-left: 1rem;"></i>
+                    <h1>Analytics Dashboard</h1>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h2>Business Analytics</h2>
+                <p>Track demand trends, popular content, and business performance metrics.</p>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-title">Total Chats</span>
+                        <i class="fas fa-comments" style="color: #3b82f6;"></i>
+                    </div>
+                    <div class="metric-value">195</div>
+                    <div class="metric-change">
+                        <i class="fas fa-trending-up"></i>
+                        +12% from last month
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-title">Blog Views</span>
+                        <i class="fas fa-eye" style="color: #10b981;"></i>
+                    </div>
+                    <div class="metric-value">5,630</div>
+                    <div class="metric-change">
+                        <i class="fas fa-trending-up"></i>
+                        +18% from last month
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-title">Parts Inquiries</span>
+                        <i class="fas fa-box" style="color: #8b5cf6;"></i>
+                    </div>
+                    <div class="metric-value">194</div>
+                    <div class="metric-change">
+                        <i class="fas fa-trending-up"></i>
+                        +8% from last month
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-header">
+                        <span class="metric-title">New Posts</span>
+                        <i class="fas fa-book-open" style="color: #f59e0b;"></i>
+                    </div>
+                    <div class="metric-value">25</div>
+                    <div class="metric-change">
+                        <i class="fas fa-trending-up"></i>
+                        +25% from last month
+                    </div>
+                </div>
+            </div>
+
+            <!-- Analytics Grid -->
+            <div class="analytics-grid">
+                <!-- Services in High Demand -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Services in High Demand</h3>
+                    </div>
+                    <div class="card-description">Most requested repair services this month</div>
+                    <div id="servicesChart">
+                        <!-- Services will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Monthly Trends Chart -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Monthly Trends</h3>
+                    </div>
+                    <div class="card-description">Activity trends over the past 6 months</div>
+                    <div id="trendsChart" style="height: 300px; display: flex; align-items: end; gap: 1rem; padding: 1rem;">
+                        <!-- Chart will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Second Row Analytics -->
+            <div class="analytics-grid">
+                <!-- Most Requested Parts -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Most Requested Parts</h3>
+                    </div>
+                    <div class="card-description">Parts frequently requested by customers</div>
+                    <div id="partsChart">
+                        <!-- Parts chart will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Most Viewed Blog Posts -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Most Viewed Blog Posts</h3>
+                    </div>
+                    <div class="card-description">Popular repair guides and tutorials</div>
+                    <div id="blogChart">
+                        <!-- Blog posts will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="analytics.js"></script>
+<!-- Start of LiveChat (www.livechat.com) code -->
+<script>
+    window.__lc = window.__lc || {};
+    window.__lc.license = 19186092;
+    window.__lc.integration_name = "manual_onboarding";
+    window.__lc.product_name = "livechat";
+    ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
+</script>
+<noscript><a href="https://www.livechat.com/chat-with/19186092/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
+<!-- End of LiveChat code -->
+
+</body>
+</html>

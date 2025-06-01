@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repair Guides - Dern Support</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-brand">
+                    <a href="dashboard.html" class="nav-link">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Dashboard
+                    </a>
+                    <i class="fas fa-book-open" style="color: #10b981; margin-left: 1rem;"></i>
+                    <h1 id="blogTitle">Repair Guides</h1>
+                </div>
+                <button class="btn btn-primary hidden" id="createPostBtn" onclick="showCreateModal()">
+                    <i class="fas fa-plus"></i>
+                    Create Post
+                </button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h2 id="blogHeader">Learn to Fix Your Devices</h2>
+                <p id="blogDescription">Step-by-step guides to help you repair your electronic devices.</p>
+            </div>
+
+            <div class="blog-posts" id="blogPosts">
+                <!-- Posts will be populated by JavaScript -->
+            </div>
+
+            <div class="empty-state hidden" id="emptyBlogState">
+                <i class="fas fa-book-open"></i>
+                <h3>No guides yet</h3>
+                <p id="emptyBlogText">Check back later for new repair guides.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create Post Modal -->
+    <div class="modal hidden" id="createPostModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Create New Repair Guide</h3>
+                <p>Share your expertise with users who want to fix their devices.</p>
+            </div>
+            
+            <form id="createPostForm">
+                <div class="form-group">
+                    <label for="postTitle">Title</label>
+                    <input type="text" id="postTitle" placeholder="Enter guide title..." required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="postCategory">Category</label>
+                    <input type="text" id="postCategory" placeholder="e.g., Laptop Repair, Phone Repair..." required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="postContent">Content</label>
+                    <textarea id="postContent" placeholder="Write your repair guide..." required></textarea>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="hideCreateModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Create Guide</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Post Detail Modal -->
+    <div class="modal hidden" id="postDetailModal">
+        <div class="modal-content">
+            <button type="button" onclick="hidePostDetail()" style="background: none; border: none; margin-bottom: 1rem; cursor: pointer;">
+                <i class="fas fa-arrow-left"></i> Back to Guides
+            </button>
+            
+            <div id="postDetailContent">
+                <!-- Post detail will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="blog.js"></script>
+    <!-- Start of LiveChat (www.livechat.com) code -->
+<script>
+    window.__lc = window.__lc || {};
+    window.__lc.license = 19186092;
+    window.__lc.integration_name = "manual_onboarding";
+    window.__lc.product_name = "livechat";
+    ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
+</script>
+<noscript><a href="https://www.livechat.com/chat-with/19186092/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
+<!-- End of LiveChat code -->
+
+</body>
+</html>

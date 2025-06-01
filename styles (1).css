@@ -1,0 +1,385 @@
+/* Add these styles to the existing styles.css file */
+
+/* Inventory Styles */
+.filters-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.inventory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 1.5rem;
+}
+
+.inventory-item {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s;
+}
+
+.inventory-item:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+}
+
+.item-actions {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.item-actions button {
+    background: none;
+    border: none;
+    padding: 0.25rem;
+    cursor: pointer;
+    color: #6b7280;
+    transition: color 0.2s;
+}
+
+.item-actions button:hover {
+    color: #374151;
+}
+
+.item-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.item-description {
+    color: #6b7280;
+    font-size: 0.875rem;
+    margin-bottom: 1rem;
+}
+
+.item-price {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #10b981;
+}
+
+.item-stock {
+    font-size: 0.875rem;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    font-weight: 500;
+}
+
+.item-stock.in-stock {
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.item-stock.out-of-stock {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.item-compatibility {
+    margin-bottom: 1rem;
+}
+
+.item-compatibility p:first-child {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 0.25rem;
+}
+
+.item-compatibility p:last-child {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Analytics Specific Styles */
+.analytics-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.chart-container {
+    background: white;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    height: 400px;
+}
+
+.chart-header {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.chart-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.chart-description {
+    color: #6b7280;
+    font-size: 0.875rem;
+}
+
+.bar-chart {
+    display: flex;
+    align-items: end;
+    gap: 1rem;
+    height: 250px;
+    padding: 1rem 0;
+}
+
+.bar-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.bars {
+    display: flex;
+    align-items: end;
+    gap: 2px;
+    height: 200px;
+}
+
+.bar {
+    width: 20px;
+    border-radius: 2px 2px 0 0;
+    transition: opacity 0.2s;
+}
+
+.bar:hover {
+    opacity: 0.8;
+}
+
+.bar-chats {
+    background: #3b82f6;
+}
+
+.bar-posts {
+    background: #10b981;
+}
+
+.bar-sales {
+    background: #f59e0b;
+}
+
+.chart-legend {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 2px;
+}
+
+.progress-chart {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.progress-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.progress-label {
+    min-width: 120px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.progress-bar {
+    flex: 1;
+    background: #f1f5f9;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: #8b5cf6;
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.progress-value {
+    min-width: 40px;
+    text-align: right;
+    font-size: 0.875rem;
+    font-weight: 600;
+}
+
+.blog-analytics-item {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.blog-analytics-item:last-child {
+    border-bottom: none;
+}
+
+.blog-item-content {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    flex: 1;
+}
+
+.blog-item-rank {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    background: #dcfce7;
+    color: #16a34a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 0.875rem;
+}
+
+.blog-item-details {
+    flex: 1;
+}
+
+.blog-item-title {
+    font-weight: 500;
+    font-size: 0.875rem;
+    line-height: 1.4;
+    margin-bottom: 0.5rem;
+}
+
+.blog-item-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.blog-item-category {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+    background: #f3f4f6;
+    color: #374151;
+    border-radius: 9999px;
+}
+
+.blog-item-views {
+    font-size: 0.75rem;
+    color: #6b7280;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .inventory-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .filters-section > div {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .filters-section input,
+    .filters-section select {
+        min-width: auto;
+    }
+    
+    .analytics-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .metrics-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+    
+    .bar-chart {
+        gap: 0.5rem;
+    }
+    
+    .bars {
+        gap: 1px;
+    }
+    
+    .bar {
+        width: 15px;
+    }
+    
+    .chart-legend {
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+}
+
+/* Form improvements for inventory */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Additional utility classes */
+.text-success {
+    color: #10b981;
+}
+
+.text-danger {
+    color: #ef4444;
+}
+
+.text-warning {
+    color: #f59e0b;
+}
+
+.bg-success {
+    background-color: #dcfce7;
+}
+
+.bg-danger {
+    background-color: #fee2e2;
+}
+
+.bg-warning {
+    background-color: #fef3c7;
+}

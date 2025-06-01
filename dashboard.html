@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Dern Support</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-brand">
+                    <i class="fas fa-wrench"></i>
+                    <h1>Dern Support</h1>
+                </div>
+                <div class="header-actions">
+                    <span class="user-info" id="userInfo"></span>
+                    <button class="btn btn-secondary" onclick="logout()">Logout</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h2>Welcome to your dashboard</h2>
+                <p id="dashboardDescription"></p>
+            </div>
+
+            <div class="cards-grid" id="dashboardCards">
+                <!-- Cards will be populated by JavaScript -->
+            </div>
+
+            <div class="page-header">
+                <h3>Quick Overview</h3>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <i class="fas fa-users" style="color: #3b82f6;"></i>
+                        <span>Active Chats</span>
+                    </div>
+                    <div class="stat-value" id="activeChats">12</div>
+                    <div class="stat-change">
+                        <i class="fas fa-trending-up"></i>
+                        +12% from last month
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <i class="fas fa-book-open" style="color: #10b981;"></i>
+                        <span>Repair Guides</span>
+                    </div>
+                    <div class="stat-value">24</div>
+                    <div class="stat-change">
+                        <i class="fas fa-trending-up"></i>
+                        +18% from last month
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <i class="fas fa-box" style="color: #8b5cf6;"></i>
+                        <span>Parts Available</span>
+                    </div>
+                    <div class="stat-value">156</div>
+                    <div class="stat-change">
+                        <i class="fas fa-trending-up"></i>
+                        +8% from last month
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

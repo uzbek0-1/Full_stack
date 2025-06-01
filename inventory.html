@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parts Inventory - Dern Support</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard-container">
+        <header class="header">
+            <div class="header-content">
+                <div class="header-brand">
+                    <a href="dashboard.html" class="nav-link">
+                        <i class="fas fa-arrow-left"></i>
+                        Back to Dashboard
+                    </a>
+                    <i class="fas fa-box" style="color: #8b5cf6; margin-left: 1rem;"></i>
+                    <h1 id="inventoryTitle">Parts Catalog</h1>
+                </div>
+                <button class="btn btn-primary hidden" id="addItemBtn" onclick="showAddItemModal()">
+                    <i class="fas fa-plus"></i>
+                    Add Item
+                </button>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="page-header">
+                <h2 id="inventoryHeader">Available Parts & Components</h2>
+                <p id="inventoryDescription">Browse our selection of electronic parts and components.</p>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters-section" style="margin-bottom: 2rem;">
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <div style="flex: 1; min-width: 300px; position: relative;">
+                        <i class="fas fa-search" style="position: absolute; left: 0.75rem; top: 50%; transform: translateY(-50%); color: #9ca3af;"></i>
+                        <input type="text" id="searchInput" placeholder="Search parts..." 
+                               style="width: 100%; padding: 0.75rem 0.75rem 0.75rem 2.5rem; border: 1px solid #d1d5db; border-radius: 0.5rem;"
+                               oninput="filterItems()">
+                    </div>
+                    <select id="categoryFilter" onchange="filterItems()" 
+                            style="padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem; min-width: 200px;">
+                        <option value="all">All Categories</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Inventory Grid -->
+            <div class="inventory-grid" id="inventoryGrid">
+                <!-- Items will be populated by JavaScript -->
+            </div>
+
+            <div class="empty-state hidden" id="emptyInventoryState">
+                <i class="fas fa-box"></i>
+                <h3>No items found</h3>
+                <p id="emptyInventoryText">Try adjusting your search or filter criteria.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add Item Modal -->
+    <div class="modal hidden" id="addItemModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Inventory Item</h3>
+                <p>Add a new part or component to your inventory.</p>
+            </div>
+            
+            <form id="addItemForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="itemName">Item Name</label>
+                        <input type="text" id="itemName" placeholder="Enter item name..." required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemCategory">Category</label>
+                        <input type="text" id="itemCategory" placeholder="e.g., Phone Parts, Laptop Parts..." required>
+                    </div>
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="itemPrice">Price ($)</label>
+                        <input type="number" id="itemPrice" step="0.01" placeholder="0.00" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="itemStock">Stock Quantity</label>
+                        <input type="number" id="itemStock" placeholder="0" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="itemCompatibility">Compatibility</label>
+                    <input type="text" id="itemCompatibility" placeholder="Compatible devices/models..." required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="itemDescription">Description</label>
+                    <input type="text" id="itemDescription" placeholder="Item description..." required>
+                </div>
+                
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="hideAddItemModal()">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Add Item</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="inventory.js"></script>
+    <!-- Start of LiveChat (www.livechat.com) code -->
+<script>
+    window.__lc = window.__lc || {};
+    window.__lc.license = 19186092;
+    window.__lc.integration_name = "manual_onboarding";
+    window.__lc.product_name = "livechat";
+    ;(function(n,t,c){function i(n){return e._h?e._h.apply(null,n):e._q.push(n)}var e={_q:[],_h:null,_v:"2.0",on:function(){i(["on",c.call(arguments)])},once:function(){i(["once",c.call(arguments)])},off:function(){i(["off",c.call(arguments)])},get:function(){if(!e._h)throw new Error("[LiveChatWidget] You can't use getters before load.");return i(["get",c.call(arguments)])},call:function(){i(["call",c.call(arguments)])},init:function(){var n=t.createElement("script");n.async=!0,n.type="text/javascript",n.src="https://cdn.livechatinc.com/tracking.js",t.head.appendChild(n)}};!n.__lc.asyncInit&&e.init(),n.LiveChatWidget=n.LiveChatWidget||e}(window,document,[].slice))
+</script>
+<noscript><a href="https://www.livechat.com/chat-with/19186092/" rel="nofollow">Chat with us</a>, powered by <a href="https://www.livechat.com/?welcome" rel="noopener nofollow" target="_blank">LiveChat</a></noscript>
+<!-- End of LiveChat code -->
+
+</body>
+</html>
