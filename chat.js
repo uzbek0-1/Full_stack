@@ -31,64 +31,11 @@ function createSidebar(isAdmin) {
     const sidebar = document.getElementById('chatSidebar');
     
     if (isAdmin) {
-        // Admin sidebar with chat sessions
-        const chatSessions = [
-            {
-                id: '1',
-                userEmail: 'john@example.com',
-                category: 'service',
-                status: 'active',
-                lastMessage: 'My laptop screen is flickering',
-                timestamp: new Date(Date.now() - 300000)
-            },
-            {
-                id: '2',
-                userEmail: 'sarah@example.com',
-                category: 'purchase',
-                status: 'active',
-                lastMessage: 'Do you have iPhone 12 screens in stock?',
-                timestamp: new Date(Date.now() - 600000)
-            }
-        ];
-        
-        sidebar.innerHTML = `
-            <div class="sidebar-header">
-                <h3>Active Chats</h3>
-            </div>
-            <div class="chat-sessions">
-                ${chatSessions.map(session => `
-                    <div class="session-item" onclick="selectChatSession('${session.id}', '${session.userEmail}')">
-                        <div class="session-header">
-                            <span class="session-email">${session.userEmail}</span>
-                            <span class="badge ${session.category === 'purchase' ? 'badge-primary' : 'badge-secondary'}">
-                                ${session.category}
-                            </span>
-                        </div>
-                        <div class="session-message">${session.lastMessage}</div>
-                        <div class="session-time">${session.timestamp.toLocaleTimeString()}</div>
-                    </div>
-                `).join('')}
-            </div>
-        `;
+         window.location.replace('https://my.livechatinc.com/home');
+        ;
     } else {
-        // User sidebar with category selection
-        sidebar.innerHTML = `
-            <div class="sidebar-header">
-                <h3>Start a Conversation</h3>
-            </div>
-            <div style="padding: 1rem;">
-                <div class="form-group">
-                    <label>What do you need help with?</label>
-                    <select id="categorySelect" onchange="category = this.value" style="width: 100%; padding: 0.75rem; border: 1px solid #d1d5db; border-radius: 0.5rem;">
-                        <option value="service">Repair Services</option>
-                        <option value="purchase">Purchase Parts</option>
-                    </select>
-                </div>
-                <button class="btn btn-primary" onclick="startChat()" ${hasStartedChat ? 'style="display: none;"' : ''}>
-                    Start Chat
-                </button>
-            </div>
-        `;
+        window.location.replace('https://direct.lc.chat/19186092/');
+        ;
     }
 }
 
