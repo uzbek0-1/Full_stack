@@ -46,15 +46,19 @@ async function loadItems() {
     try {
         const response = await fetch('http://localhost:3000/api/items', {
             headers: {
-                userRole: localStorage.getItem('userRole'),
-                userEmail: localStorage.getItem('userEmail')
+                'userrole': localStorage.getItem('userRole'),
+                'useremail': localStorage.getItem('userEmail')
             }
         });
-        if (!response.ok) throw new Error('Failed to fetch items');
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(`Failed to fetch items: ${errorData.error} - ${errorData.details || response.statusText}`);
+        }
         items = await response.json();
         filteredItems = [...items];
     } catch (err) {
         console.error('Error loading items:', err);
+        alert(`Failed to load inventory: ${err.message}`);
         items = [];
         filteredItems = [];
     }
@@ -131,9 +135,7 @@ function displayItems() {
                         <span style="font-size: 1.125rem; font-weight: 600; color: #10b981;">$${item.price.toFixed(2)}</span>
                     </div>
                     <span class="badge ${item.stock > 0 ? 'badge-primary' : 'badge-secondary'}" style="background: ${
-                        item.stock > 0 ? '#dbeafe'
-
- : '#f3f4f6'
+                        item.stock > 0 ? '#dbeafe' : '#f3f4f6'
                     }; color: ${item.stock > 0 ? '#1d4ed8' : '#6b7280'};">
                         ${item.stock > 0 ? `${item.stock} in stock` : 'Out of stock'}
                     </span>
@@ -144,12 +146,15 @@ function displayItems() {
                 </div>
                 ${
                     !isAdmin
-                        ? `
-                    <button class="btn ${item.stock > 0 ? 'btn-primary' : 'btn-secondary'}" ${item.stock === 0 ? 'disabled' : ''}>
-                        ${item.stock > 0 ? 'Contact for Purchase' : 'Out of Stock'}
-                    </button>
-                `
-                        : ''
+  ? `
+    <a href="https://direct.lc.chat/19186092/" 
+       class="btn ${item.stock > 0 ? 'btn-primary' : 'btn-secondary'}" 
+       ${item.stock === 0 ? 'style="pointer-events: none; opacity: 0.6;"' : ''}>
+      ${item.stock > 0 ? 'Contact for Purchase' : 'Out of Stock'}
+    </a>
+  `
+  : ''
+
                 }
             </div>
         </div>
@@ -160,6 +165,7 @@ function displayItems() {
 
 function showAddItemModal() {
     document.getElementById('addItemModal').classList.remove('hidden');
+    document.getElementById('addItemForm').onsubmit = createItem; // Ensure form is set to create
 }
 
 function hideAddItemModal() {
@@ -171,11 +177,14 @@ async function editItem(itemId) {
     try {
         const response = await fetch(`http://localhost:3000/api/items/${itemId}`, {
             headers: {
-                userRole: localStorage.getItem('userRole'),
-                userEmail: localStorage.getItem('userEmail')
+                'userrole': localStorage.getItem('userRole'),
+                'useremail': localStorage.getItem('userEmail')
             }
         });
-        if (!response.ok) throw new Error('Failed to fetch item');
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(`Failed to fetch item: ${errorData.error} - ${errorData.details || response.statusText}`);
+        }
         const item = await response.json();
 
         // Populate form with existing data
@@ -196,39 +205,45 @@ async function editItem(itemId) {
         };
     } catch (err) {
         console.error('Error fetching item for edit:', err);
+        alert(`Failed to load item for editing: ${err.message}`);
     }
 }
 
 async function updateItem(itemId) {
-    const name = document.getElementById('itemName').value;
-    const category = document.getElementById('itemCategory').value;
+    const name = document.getElementById('itemName').value.trim();
+    const category = document.getElementById('itemCategory').value.trim();
     const price = parseFloat(document.getElementById('itemPrice').value);
     const stock = parseInt(document.getElementById('itemStock').value);
-    const compatibility = document.getElementById('itemCompatibility').value;
-    const description = document.getElementById('itemDescription').value;
+    const compatibility = document.getElementById('itemCompatibility').value.trim();
+    const description = document.getElementById('itemDescription').value.trim();
 
-    if (!name || !category || !price || !stock || !compatibility || !description) return;
+    if (!name || !category || isNaN(price) || isNaN(stock) || !compatibility || !description) {
+        alert('All fields are required and must be valid.');
+        return;
+    }
 
     try {
         const response = await fetch(`http://localhost:3000/api/items/${itemId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                userRole: localStorage.getItem('userRole'),
-                userEmail: localStorage.getItem('userEmail')
+                'userrole': localStorage.getItem('userRole'),
+                'useremail': localStorage.getItem('userEmail')
             },
             body: JSON.stringify({ name, category, price, stock, compatibility, description })
         });
-        if (!response.ok) throw new Error('Failed to update item');
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(`Failed to update item: ${errorData.error} - ${errorData.details || response.statusText}`);
+        }
         await loadItems();
         populateCategoryFilter();
         filterItems();
         hideAddItemModal();
-
-        // Reset form submission
-        document.getElementById('addItemForm').onsubmit = createItem;
+        document.getElementById('addItemForm').onsubmit = createItem; // Reset form submission
     } catch (err) {
         console.error('Error updating item:', err);
+        alert(`Failed to update item: ${err.message}`);
     }
 }
 
@@ -238,16 +253,20 @@ async function deleteItem(itemId) {
             const response = await fetch(`http://localhost:3000/api/items/${itemId}`, {
                 method: 'DELETE',
                 headers: {
-                    userRole: localStorage.getItem('userRole'),
-                    userEmail: localStorage.getItem('userEmail')
+                    'userrole': localStorage.getItem('userRole'),
+                    'useremail': localStorage.getItem('userEmail')
                 }
             });
-            if (!response.ok) throw new Error('Failed to delete item');
+            if (!response.ok) {
+                const errorData = await response.json();
+                throw new Error(`Failed to delete item: ${errorData.error} - ${errorData.details || response.statusText}`);
+            }
             await loadItems();
             populateCategoryFilter();
             filterItems();
         } catch (err) {
             console.error('Error deleting item:', err);
+            alert(`Failed to delete item: ${err.message}`);
         }
     }
 }
@@ -258,31 +277,38 @@ document.getElementById('addItemForm').addEventListener('submit', createItem);
 async function createItem(e) {
     e.preventDefault();
 
-    const name = document.getElementById('itemName').value;
-    const category = document.getElementById('itemCategory').value;
+    const name = document.getElementById('itemName').value.trim();
+    const category = document.getElementById('itemCategory').value.trim();
     const price = parseFloat(document.getElementById('itemPrice').value);
     const stock = parseInt(document.getElementById('itemStock').value);
-    const compatibility = document.getElementById('itemCompatibility').value;
-    const description = document.getElementById('itemDescription').value;
+    const compatibility = document.getElementById('itemCompatibility').value.trim();
+    const description = document.getElementById('itemDescription').value.trim();
 
-    if (!name || !category || !price || !stock || !compatibility || !description) return;
+    if (!name || !category || isNaN(price) || isNaN(stock) || !compatibility || !description) {
+        alert('All fields are required and must be valid.');
+        return;
+    }
 
     try {
         const response = await fetch('http://localhost:3000/api/items', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                userRole: localStorage.getItem('userRole'),
-                userEmail: localStorage.getItem('userEmail')
+                'userrole': localStorage.getItem('userRole'),
+                'useremail': localStorage.getItem('userEmail')
             },
             body: JSON.stringify({ name, category, price, stock, compatibility, description })
         });
-        if (!response.ok) throw new Error('Failed to create item');
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(`Failed to create item: ${errorData.error} - ${errorData.details || response.statusText}`);
+        }
         await loadItems();
         populateCategoryFilter();
         filterItems();
         hideAddItemModal();
     } catch (err) {
         console.error('Error creating item:', err);
+        alert(`Failed to create item: ${err.message}`);
     }
 }

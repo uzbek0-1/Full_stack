@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "title": "How to Fix a Flickering Laptop Screen",
+    "content": "A flickering laptop screen can be caused by several issues. First, check your display drivers...\n\nStep 1: Update your graphics drivers\nStep 2: Check the display cable connection\nStep 3: Adjust screen refresh rate\nStep 4: Test with external monitor\n\nIf these steps don't resolve the issue, the problem might be hardware-related and require professional repair.",
+    "category": "Laptop Repair",
+    "views": 1250,
+    "createdAt": "2024-12-02T14:13:20.000Z",
+    "author": "admin@dernsupport.com"
+  },
+  {
+    "id": "2",
+    "title": "iPhone Battery Replacement Guide",
+    "content": "Replacing an iPhone battery requires careful handling and the right tools...\n\nTools needed:\n- Pentalobe screwdriver\n- Suction cup\n- Plastic opening tools\n- Adhesive strips\n\nStep-by-step process:\n1. Power off your iPhone\n2. Remove the two screws near the charging port\n3. Use suction cup to lift the screen\n4. Disconnect the battery connector\n5. Remove old battery and install new one\n\nWarning: This process voids your warranty. Consider professional service if unsure.",
+    "category": "Phone Repair",
+    "views": 2100,
+    "createdAt": "2024-12-01T14:13:20.000Z",
+    "author": "admin@dernsupport.com"
+  },
+  {
+    "id": "3",
+    "title": "Troubleshooting Gaming Console Overheating",
+    "content": "Gaming consoles can overheat due to dust buildup and poor ventilation...\n\nCommon causes:\n- Dust accumulation in vents\n- Thermal paste degradation\n- Fan malfunction\n- Poor room ventilation\n\nSolutions:\n1. Clean air vents with compressed air\n2. Ensure proper ventilation around console\n3. Replace thermal paste (advanced users)\n4. Check and replace cooling fans if necessary\n\nRegular maintenance can prevent most overheating issues.",
+    "category": "Gaming Console",
+    "views": 890,
+    "createdAt": "2024-11-30T14:13:20.000Z",
+    "author": "admin@dernsupport.com"
+  }
+]

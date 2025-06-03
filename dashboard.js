@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('dashboardDescription').textContent = description;
     
     // Update active chats count based on role
-    document.getElementById('activeChats').textContent = isAdmin ? '12' : '1';
+    
     
     // Create dashboard cards
     createDashboardCards(isAdmin);

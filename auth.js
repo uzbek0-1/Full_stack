@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn) {
+    if (localStorage.getItem('isLoggedIn') === 'true') {
         window.location.href = 'dashboard.html';
     }
 });
 
-// Tab switching
 function showLogin() {
     document.getElementById('loginForm').classList.remove('hidden');
     document.getElementById('registerForm').classList.add('hidden');
@@ -20,57 +18,60 @@ function showRegister() {
     document.querySelectorAll('.tab-btn')[1].classList.add('active');
 }
 
-// Login form handler
-document.getElementById('loginForm').addEventListener('submit', function(e) {
+document.getElementById('loginForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    
     const email = document.getElementById('loginEmail').value;
     const password = document.getElementById('loginPassword').value;
-    
-    // Mock authentication with admin password
-    const isAdmin = email === 'admin@dernsupport.com' && password === 'adminPassword';
-    const userRole = isAdmin ? 'admin' : 'user';
-    
-    // Store user session
-    localStorage.setItem('userRole', userRole);
-    localStorage.setItem('userEmail', email);
-    localStorage.setItem('isLoggedIn', 'true');
-    
-    window.location.href = 'dashboard.html';
+
+    try {
+        const response = await fetch('http://localhost:3000/api/login', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+        const data = await response.json();
+        if (data.error) {
+            alert(data.error);
+        } else {
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('userEmail', data.email);
+            localStorage.setItem('userRole', data.role);
+            window.location.href = 'dashboard.html';
+        }
+    } catch (error) {
+        alert('Error logging in. Is the server running?');
+    }
 });
 
-// Register form handler
-document.getElementById('registerForm').addEventListener('submit', function(e) {
+document.getElementById('registerForm').addEventListener('submit', async function(e) {
     e.preventDefault();
-    
     const email = document.getElementById('regEmail').value;
     const password = document.getElementById('regPassword').value;
-    
-    // Mock registration
-    localStorage.setItem('userRole', 'user');
-    localStorage.setItem('userEmail', email);
-    localStorage.setItem('isLoggedIn', 'true');
-    
-    window.location.href = 'dashboard.html';
+
+    try {
+        const response = await fetch('http://localhost:3000/api/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        });
+        const data = await response.json();
+        if (data.error) {
+            alert(data.error);
+        } else {
+            localStorage.setItem('isLoggedIn', 'true');
+            localStorage.setItem('userEmail', data.email);
+            localStorage.setItem('userRole', data.role);
+            alert('Registration successful!');
+            window.location.href = 'dashboard.html';
+        }
+    } catch (error) {
+        alert('Error registering. Is the server running?');
+    }
 });
-function login(event) {
-    event.preventDefault();
-    const email = document.getElementById('login-email').value;
-    const password = document.getElementById('login-password').value;
 
-    const users = JSON.parse(localStorage.getItem('users')) || [];
-    if (users.length === 0) {
-        alert('No registered users. Please sign up first.');
-        return;
-    }
-
-    const user = users.find(u => u.email === email && u.password === password);
-    if (user) {
-        localStorage.setItem('isLoggedIn', 'true');
-        localStorage.setItem('userEmail', email);
-        localStorage.setItem('userRole', user.role);
-        window.location.href = 'index.html';
-    } else {
-        alert('Invalid email or password');
-    }
+function logout() {
+    localStorage.setItem('isLoggedIn', 'false');
+    localStorage.removeItem('userEmail');
+    localStorage.removeItem('userRole');
+    window.location.href = 'index.html';
 }
