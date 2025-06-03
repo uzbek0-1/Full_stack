@@ -53,3 +53,24 @@ document.getElementById('registerForm').addEventListener('submit', function(e) {
     
     window.location.href = 'dashboard.html';
 });
+function login(event) {
+    event.preventDefault();
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    const users = JSON.parse(localStorage.getItem('users')) || [];
+    if (users.length === 0) {
+        alert('No registered users. Please sign up first.');
+        return;
+    }
+
+    const user = users.find(u => u.email === email && u.password === password);
+    if (user) {
+        localStorage.setItem('isLoggedIn', 'true');
+        localStorage.setItem('userEmail', email);
+        localStorage.setItem('userRole', user.role);
+        window.location.href = 'index.html';
+    } else {
+        alert('Invalid email or password');
+    }
+}
