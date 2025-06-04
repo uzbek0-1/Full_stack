@@ -289,17 +289,6 @@ app.get('/api/items', (req, res) => {
         const items = JSON.parse(fs.readFileSync(inventoryFile));
         res.json(items);
     } catch (error) {
-        console.error('Error reading inventory items:', error);
-        res.status(500).json({ error: 'Failed to load items' });
-    }
-});
-
-// Inventory Routes
-app.get('/api/items', (req, res) => {
-    try {
-        const items = JSON.parse(fs.readFileSync(inventoryFile));
-        res.json(items);
-    } catch (error) {
         console.error('Error in GET /api/items:', {
             message: error.message,
             stack: error.stack
@@ -418,4 +407,17 @@ app.delete('/api/items/:id', requireAdmin, (req, res) => {
         });
         res.status(500).json({ error: 'Failed to delete item', details: error.message });
     }
+});
+
+// Error handling middleware
+app.use((error, req, res, next) => {
+    console.error('Server error:', error);
+    res.status(500).json({ error: 'Internal server error' });
+});
+
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+    console.log('Blog data will be stored in blog.json');
+    console.log('User data will be stored in users.json');
+    console.log('Inventory data will be stored in inventory.json');
 });
